@@ -2,19 +2,20 @@
 
  
 
-**Objective**: Understand how to map security controls to compliance frameworks (e.g., NIST CSF, ISO 27001, SOC 2) and test compliance in a home lab.
+**Objective**: Learn how to **map regulations to security controls** and implement compliance measures in a home lab.
  <br/>
 
 
-<h2>🛠 Step 1: Choose a Compliance Framework</h2>
-You can start with NIST Cybersecurity Framework (CSF) since it's widely used and publicly available.<br/>   
+<h2>🛠 Step 1: Choose a Regulation to Map</h2>
   <br/>  
   
-🔹 Alternative Options :  
-  - <b>ISO 27001 (if you want international standards)</b> 
-   - <b>SOC 2 (if you're interested in auditing for service providers)</b>
-   - <b>PCI-DSS (for payment security compliance)</b>
+🔹 Select a regulatory framework to work with :  
+  - <b>**GDPR** (Data Protection & Privacy - good for EU focus)</b> 
+   - <b>**HIPAA** (Healthcare data security & compliance)</b>
+   - <b>**PCI-DSS** (Payment security regulations)</b>
+   - <b>**SOX** (Sarbanes-Oxley Act for financial compliance)</b>
 
+  
 👉 For this project, we'll use NIST CSF as our baseline framework. <br/>  
 📄 Download the NIST CSF document [HERE](https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.04162018.pdf) <br/>  
 
