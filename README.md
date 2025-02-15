@@ -68,70 +68,74 @@
         chmod 600 sensitive_data.txt
         chown root:root sensitive_data.txt
  
-  - This will generate a **security report** based on NIST controls.
+  ✅ **This ensures only authorized users can access critical files.**  
+    
   
-  2. **Set Up Basic Firewall Rules (UFW)**
+<h2>🔹 Control 3: Enable Logging & Breach Detection (Article 33) </h2> <br/>  
+       
+ **Windows: Enable Security Logging**    
 
-         sudo ufw enable
-         sudo ufw allow OpenSSH
-         sudo ufw allow 443/tcp
-         sudo ufw status verbose
-  - This ensures only secure traffic is allowed.  
+ 🔧 **Powershell Command to Enable Logging**  
+        
+    auditpol /set /subcategory:"Logon" /success:enable /failure:enable
 
-<h2>🛠 Step 5: Compliance Validation & Reporting  <br/>  
-     
-🔹 Generate a Compliance Report  </h2>  
+  - This logs **successful and failed login attempts** for monitoring.
+
+  **Linux: Set Up Intrusion Detection System (IDS)**  
+
+ 🔧 **Install & Configure Fail2Ban for SSH Protection**  
+
+     sudo apt install fail2ban -y
+     sudo systemctl enable fail2ban  
+
+  - **Fail2Ban** blocks multiple failed login attempts automatically. 
+
+
+
+<h2>🛠 Step 4: Compliance Validation & Reporting </h2>  
   
- 1. **Windows: Check compliance settings**  
-  
-        Get-GPOReport -All -ReportType HTML -Path C:\GPO_Report.html
-    - This exports a **Group Policy** compliance report.
-  
-2. *Linux: Review Lynis Report**
+<h3> 🔹 Generate a GDPR Compliance Report </h3>  
 
-       cat /var/log/lynis-report.dat
-    - Look for **security misconfigurations**
+  1. Check encrypted files & permissions
 
-3. **Analyze Security Logs with Splunk/Wazuh**
-    - If you set up **Splunk**, create a **dashboard** to track compliance events.
+         ls -l sensitive_data.enc
 
-<h2>🛠 Step 6: Write a Compliance Summary Report</h2>  
+ 2. Review security logs for failed login attempts  
 
-🎯 Your Deliverable: A **1-Page Compliance Report** summarizing:  
+        Get-EventLog -LogName Security -Newest 10
 
-✅ Controls Implemented  
-✅ Findings from Compliance Tools  
-✅ Areas for Improvement  
-✅ Next Steps  
+ 3. Simulate a breach & review detection mechanisms
 
-<h3> 📄 Example Summary: </h3>  
 
-**Security Compliance Report - NIST CSF Implementation in Home Lab**  
+<h3> 📝 Sample GDPR Compliance Report: </h3>  
+
+**Data Protection Compliance Report - GDPR Implementation in Home Lab**  
 **Date:** \[Your Date]  
-**Compliance Framework:** NIST Cybersecurity Framework (CSF) 
+**Regulatory Framework:** GDPR
 
 <h3> 🔹 Summary of Controls Implemented </h3>  
 
-✅ Access Control (Windows & Linux GPOs) → PROTECT  
-✅ Security Logging Enabled (Splunk/Wazuh) → DETECT  
-✅ Firewall Rules (UFW, pfSense) → PROTECT  
-✅ Audit Logs Reviewed → DETECT & RESPOND  
+✅ Data Encryption (AES-256) → Article 5, 32    
+✅ Least Privilege Access (Windows & Linux) → Article 32    
+✅ Intrusion Detection & Logging (Fail2Ban, Event Logs) → Article 33    
+  
 
+  
 <h3> 🔹 Findings </h3>  
 
-📌 **Windows Server Compliance Scan**: Passed 8/10 controls (Weak password policy detected)  
-📌 **Linux Security Audit (Lynis)**: Hardening score 85/100 (Need SSH restriction improvement)  
-📌 **Splunk Logs**: Detected 3 failed login attempts (Possible brute force)  
+📌 **Encrypted Data Check:** Verified AES-256 encryption applied  
+📌 **Access Control Check:** Unauthorized users denied access
+📌 **Log Review:** Detected 5 failed login attempts, Fail2Ban blocked the attacker  
   
 <h3> 🔹 Areas for Improvement </h3>  
 
-  - Enforce **MFA** for **Windows Login**  
-  - Implement **automatic remidiation scripts** for failed login detection
+  - Implement **automated breach notifications**  
+  - Apply **role-based access controls (RBAC) for ore granular security**
 
 <h3> 🔹 Next Steps </h3>  
 
-   1. Set up **Automated Compliance Monitoring** (e.g., Wazuh SIEM rules)
-   2. Perform **Continuous Auditing** (Scheduled CIS Benchmark scans)
+   1. Automate compliance reporting with **SIEM Dashboards (Splunk, Wazuh)**
+   2. Perform **risk assessments (DPIA)** using **threat modeling tools**
 
   
 
