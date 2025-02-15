@@ -16,8 +16,8 @@
    - <b>**SOX** (Sarbanes-Oxley Act for financial compliance)</b>
 
   
-👉 For this project, we'll use NIST CSF as our baseline framework. <br/>  
-📄 Download the NIST CSF document [HERE](https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.04162018.pdf) <br/>  
+👉 For this project, we'll use **GDPR (General Data Protection Regulation)** since it applies broadly to data privacy. <br/>  
+📄 Download the **GDPR Overview** [HERE](https://gdpr-info.eu/) <br/>  
 
   
 <h2>🛠 Step 2: Set Up Your Home Lab </h2>
