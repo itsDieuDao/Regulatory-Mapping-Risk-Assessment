@@ -20,66 +20,54 @@
 📄 Download the **GDPR Overview** [HERE](https://gdpr-info.eu/) <br/>  
 
   
-<h2>🛠 Step 2: Set Up Your Home Lab </h2>
+<h2>🛠 Step 2: Identify Key GDPR Security Requirements </h2>  
+   GDPR requires organizations to ensure the Confidentiality, Integrity, and Availibility **(CIA)** of personal data.  
    
-<h3>🔹 Install a Windows Server & Linux VM </h3>  
-We'll map compliance requirements to actual security settings in a controlled environment.<br/>   
-  <br/>  
+<h3>🔹 Key Security Controls Required by GDPR </h3>  
 
-   🔧 Tools & Setup:
-   - <b>Windows Server 2022 (or 2019) VM</b> - For Group Policy, logging, and access control </b>
-   - <b>Ubuntu/Debian VM</b> - For security configuration and compliance scanning </b>
-   - <b>pfSense VM (Optional)<b/> - If you want to add firewall policies
+  
+| **GDPR** Article | Requirement | Implementation in Lab |
+| ---------------- | ----------- | --------------------- |
+| Art.5            | Data minimization & protection | Encrypt sensitive files & limit access | 
+| Art. 25          | Data protection by design | Apply security best practices (firewall, secure coding) |  
+| Art. 32          | Security of proccessing | Enable logging & monitoring (SIEM, IDS/IPS) |
+| Art. 35          | Data Protection Impact Assessments | Perform risk assessments & documentation | 
+
+ ✅**Goal:** Implement at least **three GDPR security controls** in your home lab.  
+
+   
+
+<h2>🛠 Step 3: Implement GDPR Security Controls</h2>
+<h3>🔹Control 1: Encrypt Sensitive Data (Article 5 & 32) </h3>  
+  
+  🔧 **Linux File Encryption (AES-256)**  
+  
+    openssl enc -aes-256-cbc -salt -in sensitive_data.txt -out encrypted_data.enc -k YourStrongPassword
+    
+  🔧 **Decrypt Data**  
+
+    openssl enc -aes-256-cbc -d -in encrypted_data.enc -out decrypted_data.txt -k YourStrongPassword
+
+
+✅ This ensures personal data is protected in storage.  
+
+<h2>🔹 Control 2: Access Control & User Restrictions (Article 32) </h2>  
+  
+  **Windows Server: Set Up Least Privilege Access**  
+  1. Open **Group Policy Editor (gpedit.msc)** 
+  2. Navigate to:  
+      ` Computer Configuration > windows Settings > Security Settings > Local Policies > User Rights Asssignment `
+  3. Configure "**Deny access to this computer from the network** for unauthorized users.
+  4. **Limit Admin Privileges** by creating a standard user with restricted permissions.  
+  
+  
+ **Linux: Use File Access Controls**  
+  
+  🔧 Set File Permissions  
+  
+        chmod 600 sensitive_data.txt
+        chown root:root sensitive_data.txt
  
-📌 Install Virtual Machines (VMs)
-1. Download and install VMware Worrkstation / VirtualBox
-2. Set up Windows Server 2022 and Ubuntu 22.04 VMs
-3. Configure a domain controller (Active Directory) on Windows Server <br/>
-
-
-<h2>🛠 Step 3: Map NIST CSF Controls to Your Lab Environment</h2>
-NIST CSF has five core functions:
-  
-1. Identify 🏷️ – Asset management, risk assessment
-2. Protect 🔒 – Access control, endpoint security
-3. Detect 👀 – Logging, SIEM, monitoring
-4. Respond 🚨 – Incident response plans
-5. Recover 🔄 – Backup, disaster recovery
-  
-🔹 Example Mapping:  
-| NIST Function | Control Example | Implementation in Lab |
-| ------------- | --------------- | --------------------- |
-| Identify      | Asset Inventory | List devices on the network using `nmap` or `PowerShell` `Get-ADComputer` |
-| Protect       | Access Control  | Set up Active Directory user roles & GPO for password polices | 
-| Detect        | Security Logging | Install **Splunk** or **Wazuh** to collect logs from Windows/Linux |
-| Respond       | Incident Response | Simulate a **failed login attack** and analyze logs |
-| Recover       | Backup & Restore | Set up **Windows Backup & Linux snapshots** |  
-
-✅ Goal: Implement at least one security control for each NIST function in your home lab.  
-
-<h2>🛠 Step 4: Implement Compliance Controls <br/>  
-   
-🔹 Windows Server Hardening (Protect & Detect) </h2>  
-  
-  🔧 Tasks:  
-  1. Enable Password Policies
-      - Open **Group Policy Editor (gpedit.msc)**
-      - Navigate to `Computer Configuration > Windows Settings > Security Settings > Account Policies > Password Policy`
-      - Set **Minimum Password Length** = **12**
-      - Enable **Account Lockout Policy** (3 failed attempts)
-  2. **Enable Windows Logging (SIEM Integration)**
-      - Open **Local Security Policy (secpol.msc)**
-      - Go to `Audit Policy > Audit Logon Events` → Enable **Success & Failure**
-      - Install **Splunk** or **Wazuh** to collect logs
-
-  
- <h2>🔹 Linux Hardening (Protect & Detect)</h2>  
-  
-  🔧 Tasks:  
-  1. **Run a Compliance Scan (NIST, CIS Benchmarks)**
-  
-         sudo apt install lynis -y
-         sudo lynis audit system  
   - This will generate a **security report** based on NIST controls.
   
   2. **Set Up Basic Firewall Rules (UFW)**
