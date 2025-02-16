@@ -110,7 +110,7 @@
 <h3> 📝 Sample GDPR Compliance Report: </h3>  
 
 **Data Protection Compliance Report - GDPR Implementation in Home Lab**  
-**Date:** \[Your Date]  
+**Date:** \[2/14/2025]  
 **Regulatory Framework:** GDPR
 
 <h3> 🔹 Summary of Controls Implemented </h3>  
